@@ -39,8 +39,3 @@ models:
   my_new_project:
     +database: "ANALYTICS"
     +schema: "DEMO"
-    example:
-      +materialized: table
-
-
-
