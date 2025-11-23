@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: fact_order_fulfillment
+    description: "Order level fact table. One row per order. Does not include product-level detail."
+    columns:
+
+      - name: OrderId
+        description: "Degenerate dimension for the order."
+        tests:
+          - unique
+          - not_null
+
+      - name: customerkey
+        description: "Dimension key for dim_customer"
+
+      - name: employeekey
+        description: "Dimension key for dim_employee"
+
+      - name: orderdatekey
+        description: "Role-playing Order Date key for dim_date"
+
+      - name: requireddatekey
+        description: "Role-playing Required Date key for dim_date"
+
+      - name: shippeddatekey
+        description: "Role-playing Shipped Date key for dim_date"
+
+      - name: quantity
+        description: "Additive fact: total quantity ordered"
+
+      - name: totalorderamount
+        description: "Additive fact: Sum(Quantity * Price * (1 - Discount))"
+
+      - name: daysfromordertoshipped
+        description: "Days elapsed between order date and shipped date"
+
+      - name: daysfromordertorequired
+        description: "Days elapsed between order date and required date"
+
+      - name: shippedtorequireddelta
+        description: "Shipped - Required. Positive = late order."
+
+      - name: shippedontime
+        description: "'Y' if shipped on or before required date, else 'N'"

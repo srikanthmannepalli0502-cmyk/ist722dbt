@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: "Sales fact table. One row per product on each order."
+    columns:
+
+      - name: orderid
+        description: "Degenerate dimension: Order ID"
+        tests:
+          - not_null
+
+      - name: productkey
+        description: "FK to dim_product"
+
+      - name: supplierkey
+        description: "FK to dim_supplier"
+
+      - name: categorykey
+        description: "FK to dim_category"
+
+      - name: customerkey
+        description: "FK to dim_customer"
+
+      - name: employeekey
+        description: "FK to dim_employee"
+
+      - name: orderdatekey
+        description: "Order date (role-played dim_date key)"
+
+      - name: requireddatekey
+        description: "Required date (role-played dim_date key)"
+
+      - name: shippeddatekey
+        description: "Shipped date (role-played dim_date key)"
+
+      - name: quantity
+        description: "Quantity of product sold"
+      
+      - name: unitprice
+        description: "Unit price at time of order"
+
+      - name: discount
+        description: "Discount applied at line level"
+
+      - name: extendedamount
+        description: "quantity * unitprice * (1 - discount)"
