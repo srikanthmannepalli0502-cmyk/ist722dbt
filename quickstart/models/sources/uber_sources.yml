@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: uber_raw
+    database: UBER_DW
+    schema: RAW
+    tables:
+      - name: UBER_RAW
+        description: "Raw Uber trips data loaded from CSV"
