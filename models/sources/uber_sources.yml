@@ -6,4 +6,4 @@ sources:
     schema: RAW
     tables:
       - name: UBER_RAW
-        description: "Raw Uber trips data loaded from CSV"
+        description: "Raw Uber trips data"
