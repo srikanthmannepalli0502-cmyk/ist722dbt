@@ -1,27 +1,33 @@
 {{ config(materialized='table') }}
 
 WITH stg AS (
-    SELECT * FROM {{ ref('stg_trip') }}
+    SELECT *
+    FROM UBER_DW.DW.STG_TRIP
 ),
 
 dim_date AS (
-    SELECT * FROM {{ ref('dim_date') }}
+    SELECT *
+    FROM UBER_DW.DW.DIM_DATE
 ),
 
 dim_location AS (
-    SELECT * FROM {{ ref('dim_location') }}
+    SELECT *
+    FROM UBER_DW.DW.DIM_LOCATION
 ),
 
 dim_payment AS (
-    SELECT * FROM {{ ref('dim_payment') }}
+    SELECT *
+    FROM UBER_DW.DW.DIM_PAYMENT
 ),
 
 dim_rider AS (
-    SELECT * FROM {{ ref('dim_rider') }}
+    SELECT *
+    FROM UBER_DW.DW.DIM_RIDER
 ),
 
 dim_driver AS (
-    SELECT * FROM {{ ref('dim_driver') }}
+    SELECT *
+    FROM UBER_DW.DW.DIM_DRIVER
 )
 
 SELECT
@@ -36,16 +42,17 @@ SELECT
     stg.trip_distance,
     stg.passenger_count,
     DATEDIFF('minute', stg.pickup_datetime, stg.dropoff_datetime) AS trip_duration_min
+
 FROM stg
 LEFT JOIN dim_date d1
     ON d1.full_date = CAST(stg.pickup_datetime AS DATE)
 LEFT JOIN dim_date d2
     ON d2.full_date = CAST(stg.dropoff_datetime AS DATE)
 LEFT JOIN dim_location l1
-    ON l1.latitude = stg.pickup_latitude
+    ON l1.latitude  = stg.pickup_latitude
    AND l1.longitude = stg.pickup_longitude
 LEFT JOIN dim_location l2
-    ON l2.latitude = stg.dropoff_latitude
+    ON l2.latitude  = stg.dropoff_latitude
    AND l2.longitude = stg.dropoff_longitude
 LEFT JOIN dim_payment p
     ON p.payment_type = stg.payment_type

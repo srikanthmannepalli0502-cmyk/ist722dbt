@@ -23,10 +23,10 @@ models:
     +schema: "RAW"
 
   stage:
-    +schema: "STAGE"
+    +schema: "DW"     # stg_trip lives in DW
 
   dim:
-    +schema: "DW"
+    +schema: "DW"     # all dim tables now in DW
 
   fact:
-    +schema: "DW"
+    +schema: "DW"     # fact_trip in DW
