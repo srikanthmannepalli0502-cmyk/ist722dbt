@@ -64,4 +64,3 @@ LEFT JOIN dim_rider r
 
 LEFT JOIN dim_driver dr
     ON dr.driver_id = (ABS(MOD(HASH(stg.dropoff_datetime), 74000)) + 1)
-
