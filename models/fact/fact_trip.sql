@@ -29,6 +29,7 @@ dim_driver AS (
 )
 
 SELECT
+    -- surrogate fact id auto in Snowflake, not needed here
     d1.date_id AS pickup_date_id,
     d2.date_id AS dropoff_date_id,
     r.rider_id,
@@ -63,4 +64,4 @@ LEFT JOIN dim_rider r
     ON r.rider_id = (ABS(MOD(HASH(stg.pickup_datetime), 1480000)) + 1)
 
 LEFT JOIN dim_driver dr
-    ON dr.driver_id = (ABS(MOD(HASH(stg.dropoff_datetime), 74000)) + 1)
+    ON dr.driver_id = (ABS(MOD(HASH(stg.dropoff_datetime), 74000)) + 1);
