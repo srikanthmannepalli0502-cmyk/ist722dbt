@@ -8,7 +8,7 @@ models:
     +schema: "STAGE"
 
   dim:
-    +schema: "DW_DW"
+    +schema: "DW"
 
   fact:
-    +schema: "DW_DW"
+    +schema: "DW"
